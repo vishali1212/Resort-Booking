@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda&family=Monsieur+La+Doulaise&family=Parisienne&family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=La+Belle+Aurore&family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=La+Belle+Aurore&family=Sacramento&family=WindSong&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda&family=Monsieur+La+Doulaise&family=Parisienne&family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=EB+Garamond&family=La+Belle+Aurore&family=Sacramento&family=WindSong&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <title>Book Now</title>
+
+    <style>
+        body {
+            background-image: url('https://images.pexels.com/photos/1591362/pexels-photo-1591362.jpeg?auto=compress&cs=tinysrgb&w=1500');
+        background-repeat: no-repeat;
+        }
+
+    
+
+        .container-parent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 450px;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+        }
+
+        .container input,
+        .container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .container input:valid,
+        .container select:valid {
+            border-color: #0a0;
+        }
+
+        .container input:invalid,
+        .container select:invalid {
+            border-color: rgb(255, 194, 25);
+        }
+
+        .container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: rgb(255, 194, 25);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .container button:hover {
+            background-color: #C4D7B2;
+        }
+
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+
+        #loginContainer {
+            display: none;
+        }
+
+        h2 {
+            font-family: 'Arial', sans-serif;
+            font-size: 20px;
+        }
+
+        .back-to-home-button {
+            margin-top: 20px;
+            background-color:rgb(255, 194, 25);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .back-to-home-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="container-parent">
+
+        <div class="container" id="bookNowContainer">
+            <center>
+                <h2>Book Now</h2>
+                <input type="text" id="bookingName" placeholder="Your Name" required>
+                <input type="text" id="bookingEmail" placeholder="Your Email" required>
+                <select id="destination" placeholder="destination" required>
+                    <option value="">Destination</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Pondicherry">Pondicherry</option>
+                    <option value="ECR">ECR</option>
+                </select>
+                <select id="roomType" placeholder="roomType" required>
+                    <option value="">Room</option>
+                    <option value="suite">Suite</option>
+                    <option value="single">Standard Room</option>
+                    <option value="double">Deluxe Room</option>
+                    <option value="villa">Villa with personal garden space</option>
+                    <option value="privatePoolVilla">Villa with private pool</option>
+                </select>
+                <input type="date" id="bookingCheckIn" required>
+                <input type="date" id="bookingCheckOut" required>
+                <input type="number" id="guests" placeholder="guests" required min="1" max="15"><br><br>
+                <button onclick="bookNow()">Book Now</button>
+                <p id="bookingErrorMessage" class="error"></p>
+                <button class="back-to-home-button" onclick="backToHome()">Back to Home</button>
+            </center>
+        </div>
+
+        <div class="container" id="loginContainer">
+            <center>
+                <h2>Login</h2>
+                <input type="text" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button onclick="login()">Login</button>
+                <p id="loginErrorMessage" class="error"></p>
+                <button class="back-to-home-button" onclick="backToHome()">Back to Home</button>
+            </center>
+        </div>
+    </div>
+
+    <script>
+        var reservations = [];
+
+        function bookNow() {
+            var bookingName = document.getElementById('bookingName').value;
+            var bookingEmail = document.getElementById('bookingEmail').value;
+            var destination = document.getElementById('destination').value;
+            var roomType = document.getElementById('roomType').value;
+            var bookingCheckIn = document.getElementById('bookingCheckIn').value;
+            var bookingCheckOut = document.getElementById('bookingCheckOut').value;
+            var guests = document.getElementById('guests').value;
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+            if (!emailPattern.test(bookingEmail)) {
+                document.getElementById('bookingErrorMessage').textContent = 'Enter a valid email address.';
+            } else {
+                reservations.push({
+                    name: bookingName,
+                    email: bookingEmail,
+                    destination: destination,
+                    roomType: roomType,
+                    checkIn: bookingCheckIn,
+                    checkOut: bookingCheckOut,
+                    guests: guests
+                });
+                document.getElementById('bookingErrorMessage').textContent = 'Booking successful!';
+            }
+        }
+
+        function showLoginContainer() {
+            document.getElementById('bookNowContainer').style.display = 'none';
+            document.getElementById('loginContainer').style.display = 'block';
+        }
+
+        function showSignupContainer() {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('bookNowContainer').style.display = 'block';
+        }
+
+        function login() {
+            // Add your login functionality here if needed
+        }
+
+        function backToHome() {
+            // Add logic to navigate back to the home page
+            window.location.href = "index.html"; // Replace "index.html" with the actual URL of your home page
+        }
+    </script>
+</body>
+
+</html>

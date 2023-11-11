@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda&family=Monsieur+La+Doulaise&family=Parisienne&family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=La+Belle+Aurore&family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=La+Belle+Aurore&family=Sacramento&family=WindSong&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda&family=Monsieur+La+Doulaise&family=Parisienne&family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=EB+Garamond&family=La+Belle+Aurore&family=Sacramento&family=WindSong&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <title>resort</title>
+
+    <style>
+        body {
+            background-image: url('https://images.pexels.com/photos/879010/pexels-photo-879010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 350px;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+        }
+
+        .container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+        }
+
+        .container input:valid {
+            border-color: #0a0;
+        }
+
+        .container input:invalid {
+            border-color: Tan;
+        }
+
+        .container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 30px;
+            background-color: rgb(255, 194, 25);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .container button:hover {
+            background-color: #C4D7B2;
+        }
+
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+
+        #loginContainer {
+            display: none;
+        }
+
+        h2 {
+            font-family: 'Arial', sans-serif;
+            font-size: 30px;
+        }
+
+        .img {
+            width: 200px;
+            height: 90px;
+        }
+
+        .back-to-home-button {
+            margin-top: 20px;
+            background-color: rgb(255, 194, 25);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .back-to-home-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="signupContainer">
+            <center>
+                <h2>Sign Up</h2>
+                <input type="text" id="signupUsername" placeholder="Username" required>
+                <input type="text" id="signupEmail" placeholder="Email" required>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                <button onclick="signup()">Sign Up</button>
+                <p id="errorMessage" class="error"></p>
+                <p>Already a user? <a href="#" onclick="showLoginContainer()">Login</a><br>
+                    <button class="back-to-home-button" onclick="backToHome()">Back to Home</button>
+                </p>
+            </center>
+        </div>
+
+        <div id="loginContainer">
+            <center>
+                <h2>Login</h2>
+                <input type="text" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button onclick="login()">Login</button>
+                <p id="loginErrorMessage" class="error"></p>
+                <p>Not a user? <a href="#" onclick="showSignupContainer()">Sign Up</a><br>
+                    <button class="back-to-home-button" onclick="backToHome()">Back to Home</button>
+                </p>
+            </center>
+        </div>
+    </div>
+
+    <script>
+        var users = [];
+
+        function signup() {
+            var signupUsername = document.getElementById('signupUsername').value;
+            var signupEmail = document.getElementById('signupEmail').value;
+            var signupPassword = document.getElementById('signupPassword').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            var usernamePattern = /^[A-Za-z]+$/;
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+            if (!usernamePattern.test(signupUsername)) {
+                document.getElementById('errorMessage').textContent = 'Username must contain only alphabets.';
+            } else if (!emailPattern.test(signupEmail)) {
+                document.getElementById('errorMessage').textContent = 'Enter a valid email address.';
+            } else if (signupPassword.length < 8) {
+                document.getElementById('errorMessage').textContent = 'Password must have at least 8 characters.';
+            } else if (signupPassword !== confirmPassword) {
+                document.getElementById('errorMessage').textContent = 'Passwords do not match.';
+            } else if (users.some(user => user.email === signupEmail)) {
+                document.getElementById('errorMessage').textContent = 'Email already exists. Please log in.';
+            } else {
+                users.push({ username: signupUsername, email: signupEmail, password: signupPassword });
+                document.getElementById('errorMessage').textContent = 'Sign Up successful. You can now log in.';
+                showLoginContainer(); // Show the login form
+            }
+        }
+
+        function showLoginContainer() {
+            document.getElementById('signupContainer').style.display = 'none';
+            document.getElementById('loginContainer').style.display = 'block';
+        }
+
+        function showSignupContainer() {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('signupContainer').style.display = 'block';
+        }
+
+        function login() {
+            var loginEmail = document.getElementById('loginEmail').value;
+            var loginPassword = document.getElementById('loginPassword').value;
+
+            var user = users.find(user => user.email === loginEmail && user.password === loginPassword);
+
+            if (user) {
+                document.getElementById('loginErrorMessage').textContent = 'Login successful!';
+                var welcomeMessage = 'Welcome, ' + user.username + '!';
+                alert(welcomeMessage);
+            } else {
+                document.getElementById('loginErrorMessage').textContent = 'Login failed. Check your credentials.';
+            }
+        }
+
+        function backToHome() {
+            // Add logic to navigate back to the home page
+            window.location.href = "index.html"; // Replace "index.html" with the actual URL of your home page
+        }
+    </script>
+</body>
+
+</html>
+
+

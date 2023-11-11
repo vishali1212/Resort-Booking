@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <title>Resort Booking - About Us</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 200;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 23px;
+            background-color:rgba(255, 220, 65, 0.884);
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+        }
+
+        nav a:hover {
+            color: #080808;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        #left-image {
+            flex: 1;
+        }
+
+        #left-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #text-content {
+            flex: 2;
+            padding-left: 20px;
+        }
+
+        .contact-form {
+            margin-top: 30px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #2980b9;
+        }
+
+        .resort-image {
+            max-width: 1000px;
+            height: 100px;
+            margin-bottom: 1000px; /* Add some margin to separate images */
+        }
+
+        #image {
+            height: 300px;
+            width: 600px;
+            padding: 50px;
+        }
+
+        #img1 {
+            height: 300px;
+            width: 600px;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .sec {
+            flex: 1;
+            margin-right: 20px;
+            text-align: left;
+        }
+
+        .sec h2 {
+            color: #3498db;
+        }
+
+        .sec p {
+            font-size: 14px;
+        }
+
+        .sci {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .sci i {
+            font-size: 24px;
+        }
+
+        .quicklinks ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .quicklinks a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .contactBx .info {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contactBx .info li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .contactBx .info span {
+            margin-right: 10px;
+        }
+
+        /* Footer Media Query */
+        @media (max-width: 991px) {
+            footer {
+                padding: 40px;
+                font-size: 20px;
+            }
+
+            footer .footer-container {
+                flex-direction: column;
+            }
+
+            footer .footer-container .sec {
+                margin-right: 0;
+                margin-bottom: 40px;
+            }
+
+            footer .footer-container .sec.aboutus {
+                width: 100% !important;
+            }
+
+            footer .footer-container .quicklinks {
+                width: 100%;
+            }
+
+            footer .footer-container .contactBx {
+                width: 100%;
+            }
+        }
+        .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .grid-item {
+        text-align: center;
+    }
+    
+
+    .ftco-section {
+        padding: 2em 0;
+        position: relative;
+    }
+
+    .ftco-counter {
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .counter-wrap {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 5px;
+        text-align: center;
+        margin: 5px;
+        position: relative;
+        display: inline-block; /* Display blocks in a single line */
+    }
+
+    .counter-wrap .number {
+        font-size: 40px;
+        font-weight: bold;
+        color: #3498db;
+    }
+
+    .counter-wrap span {
+        display: block;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .counter-wrap::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        border: 1px solid #e5e5e5;
+        border-radius: 5px;
+        z-index: -1;
+    }
+
+    .counter-wrap .text {
+        position: relative;
+    }
+
+    .counter-wrap .text::before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 2px;
+        background: #3498db;
+        bottom: -5px;
+        left: 0;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+        transform-origin: bottom right;
+    }
+
+    .counter-wrap:hover .text::before {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+
+    .counter-wrap:hover .number {
+        color: #fff;
+    }
+
+   
+    .rating {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+.rating span {
+    margin-right: 10px;
+    font-weight: bold;
+    font-size:25px;
+}
+
+.rating i {
+    color: #ffd700; /* Set star color */
+    font-size: 45px;
+}
+nav button {
+    display: none; /* Initially hide the menu button */
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    display: inline;
+    margin-left: 20px;
+}
+
+@media (max-width: 991px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav button {
+        display: block; /* Show the menu button on smaller screens */
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        display: none; /* Initially hide the navigation items on smaller screens */
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
+
+    nav ul.active {
+        display: flex; /* Show the navigation items when the class is active */
+    }
+}
+</style>
+
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <button id="menuButton">&#9776; Menu</button>
+            <ul>
+                <a href="index.html">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="ourfacility.html"> OUR FACILITIES </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="About.html">ABOUT</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="testcontact.html">CONTACT</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="testbook.html">BOOK NOW</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="login.html">LOGIN</a>
+
+            </ul>
+        </nav>
+    </header>
+<br>
+<br>
+<br>
+<br>
+    <section class="content">
+        <div id="left-image">
+            <img src="https://images.pexels.com/photos/274249/pexels-photo-274249.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Resort Image" />
+        </div>
+        <div id="text-content">
+            <section class="h1">
+                <center>
+                    <br>
+                    <h1>Welcome to our VL-RESORT</h1>
+                    <br>
+                </center>
+            </section>
+            <br>
+            <p>
+                our luxury resort stands as a beacon of opulence and tranquility. Every element of this exquisite retreat has been meticulously designed to offer an unparalleled experience of indulgence and relaxation. From the moment you step foot onto our lush, meticulously manicured grounds, you are enveloped in an atmosphere of serenity and sophistication. Our lavish accommodations, ranging from well-appointed suites to private villas, are a testament to the art of comfort and refinement. Guests are invited to savor world-class cuisine at our gourmet restaurants, unwind in our rejuvenating spa, and take in breathtaking views of the surrounding landscape. Here, time stands still, and the worries of the world melt away, making our luxury resort the ultimate destination for those seeking an unforgettable escape from the ordinary.
+            <p>
+        </div>
+    </section>
+    <center>
+        <br>
+    <div class="grid-container">
+        <div class="grid-item">
+            <h3 class="heading mb-3"></h3>
+            <img src="flat1.jpg">
+        </div><br>
+
+        <div class="grid-item">
+            <h3 class="heading mb-3"></h3>
+            <img src="flat2.jpg">
+        </div><br>
+
+        <div class="grid-item">
+            <h3 class="heading mb-3"></h3>
+            <img src="flat3.jpg">
+        </div><br>
+</center>
+    
+<center>
+    <section class="ftco-section ftco-counter img" id="section-counter" style="background-color: rgb(243, 255, 255);">
+    	<div class="container">
+    		<div class="row justify-content-center">
+    			<div class="col-md-10">
+		    		<div class="row">
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="50000">5000</strong>
+		                <span>Happy Guests</span>
+		              </div>
+                      <br><br><br>
+
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="3000">500</strong>
+		                <span>Rooms</span>
+		              </div>
+		            </div>
+                    <br><br><br>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="1000">100</strong>
+		                <span>Staffs</span>
+		              </div>
+                      
+                      <br><br><br>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="100">3</strong>
+		                <span>Destination</span>
+		              </div>
+                      <br><br><br>
+                      
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+        </div> 
+    	</div>
+       
+    </section>
+</center>
+<center>
+    <section>
+        <center>
+            <section class="rating">
+                <span><h1>Rating:</h1></span>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+        
+            </section>
+            
+        </center>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h3 class="heading mb-3">Restaurant Bar</h3>
+                <img src="https://images.pexels.com/photos/1243337/pexels-photo-1243337.jpeg?auto=compress&cs=tinysrgb&w=600" width="400" height="250" alt="Restaurant Bar Image">
+            </div><br>
+
+            <div class="grid-item">
+                <h3 class="heading mb-3">Transport services</h3>
+                <img src="https://images.pexels.com/photos/2877267/pexels-photo-2877267.jpeg?auto=compress&cs=tinysrgb&w=600" width="400" height="250" alt="Transport Services Image">
+            </div><br>
+  
+            <div class="grid-item">
+                <h3 class="heading mb-3">Spa Suites</h3>
+                <img src="https://images.pexels.com/photos/6724402/pexels-photo-6724402.jpeg?auto=compress&cs=tinysrgb&w=600" width="400" height="250" alt="Spa Suites Image">
+            </div><br>
+    
+    
+    </section>
+       
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="sec aboutus">
+                <h2>About Us</h2>
+                <p>We strive to provide an exceptional experience for our guests, combining luxury, comfort, and natural beauty. Explore the wonders of our resorts and plan your dream vacation with us.</p>
+                <ul class="sci">
+                    <li><a href="#"><i class="bx bxl-facebook"></i></a></li>
+                    <li><a href="#"><i class="bx bxl-instagram"></i></a></li>
+                    <li><a href="#"><i class="bx bxl-twitter"></i></a></li>
+                    <li><a href="#"><i class="bx bxl-linkedin"></i></a></li>
+                </ul>
+            </div>
+            <div class="sec quicklinks">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+            <div class="sec contactBx">
+                <h2>Contact Info</h2>
+                <ul class="info">
+                    <li>
+                        <span><i class='bx bxs-map'></i></span>
+                        <span> xyz street <br> xxyyzz PA 33445 <br> ECR</span>
+                    </li>
+                    <li>
+                        <span><i class='bx bx-envelope'></i></span>
+                        <p><a href="VL-RESORT@gmail.com">VL-RESORT@gmail.com</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('menuButton').addEventListener('click', function () {
+    var navList = document.querySelector('nav ul');
+    navList.classList.toggle('active');
+});
+
+
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            validateForm();
+        });
+    </script>
+</body>
+
+</html>

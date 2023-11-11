@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda&family=Monsieur+La+Doulaise&family=Parisienne&family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=La+Belle+Aurore&family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=La+Belle+Aurore&family=Sacramento&family=WindSong&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda&family=Monsieur+La+Doulaise&family=Parisienne&family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=EB+Garamond&family=La+Belle+Aurore&family=Sacramento&family=WindSong&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <title>Contact Us</title>
+
+    <style>
+        body {
+            background-image: url('https://images.pexels.com/photos/274249/pexels-photo-274249.jpeg?auto=compress&cs=tinysrgb&w=1500' );
+            background-repeat: no-repeat;     
+          width: 5500;
+          height: 5000;
+      
+        }
+
+
+        .container-parent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 450px;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+        }
+
+        .container input,
+        .container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .container input:valid,
+        .container textarea:valid {
+            border-color: #0a0;
+        }
+
+        .container input:invalid,
+        .container textarea:invalid {
+            border-color: rgb(255, 194, 25);
+        }
+
+        .container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: rgb(255, 194, 25);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .container button:hover {
+            background-color: #C4D7B2;
+        }
+
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+
+        #loginContainer {
+            display: none;
+        }
+
+        h2 {
+            font-family: 'Arial', sans-serif;
+            font-size: 20px;
+        }
+
+        .back-to-home-button {
+            margin-top: 20px;
+            background-color: rgb(255, 194, 25);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .back-to-home-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-parent">
+
+        <div class="container" id="contactUsContainer">
+            <center>
+                <h2>Contact Us</h2>
+                <input type="text" id="contactName" placeholder="Your Name" required>
+                <input type="text" id="contactEmail" placeholder="Your Email" required>
+                <input type="tel" id="contactPhone" placeholder="Your Phone Number" required>
+                <input type="text" id="contactAddress" placeholder="Your Address" required><br><br>
+                <textarea id="message" placeholder="Your Message" required></textarea>
+                <button onclick="sendMessage()">Send Message</button>
+                <p id="contactErrorMessage" class="error"></p>
+                <button class="back-to-home-button" onclick="backToHome()">Back to Home</button>
+            </center>
+        </div>
+
+        <div class="container" id="loginContainer">
+            <center>
+                <h2>Login</h2>
+                <input type="text" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button onclick="login()">Login</button>
+                <p id="loginErrorMessage" class="error"></p>
+            </center>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var contactName = document.getElementById('contactName').value;
+            var contactEmail = document.getElementById('contactEmail').value;
+            var contactPhone = document.getElementById('contactPhone').value;
+            var message = document.getElementById('message').value;
+            var contactAddress = document.getElementById('contactAddress').value;
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            var phonePattern = /^\d{10}$/;
+
+            if (!emailPattern.test(contactEmail)) {
+                document.getElementById('contactErrorMessage').textContent = 'Enter a valid email address.';
+            } else if (!phonePattern.test(contactPhone)) {
+                document.getElementById('contactErrorMessage').textContent = 'Enter a valid phone number.';
+            } else {
+                // You can handle the message sending logic here
+                document.getElementById('contactErrorMessage').textContent = 'Message sent successfully!';
+            }
+        }
+
+        function showLoginContainer() {
+            document.getElementById('contactUsContainer').style.display = 'none';
+            document.getElementById('loginContainer').style.display = 'block';
+        }
+
+        function showSignupContainer() {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('contactUsContainer').style.display = 'block';
+        }
+
+        function login() {
+            // Add your login functionality here if needed
+        }
+
+        function backToHome() {
+            // Add logic to navigate back to the home page
+            window.location.href = "index.html"; // Replace "index.html" with the actual URL of your home page
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resort</title>
+    <!-- Box-icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;0,700;1,400&display=swap');
+
+        
+        
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+    box-sizing: border-box;
+}
+
+/* root values */
+:root{
+    --container-color: #1a1e21;
+    --second-color: rgba(77, 228, 255);
+    --text-color: #172317;
+    --bg-color: #fff;
+}
+
+::selection{
+    color: var(--bg-color);
+    background: var(--second-color);
+}
+
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+img{
+    width: 100%;
+}
+
+section{
+    padding: 3rem 0 2rem;
+}
+
+.container{
+    max-width: 1068px;
+    margin: auto;
+    width: 100%;
+}
+
+a{
+    color: #000000;
+}
+
+/* Header */
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 200;
+    background-color: rgba(255, 220, 65, 0.836);
+}
+
+header.shadow{
+    background: var(--bg-color);
+    box-shadow: 0 1px 4px hsl(0 4% 14% / 10%);
+    transition: .5s;
+}
+
+header.shadow .logo{
+    color: var(--text-color);
+}
+
+
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+}
+
+.logo{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--bg-color);
+}
+
+.logo span{
+    color: var(--second-color);
+}
+
+.login{
+    padding: 8px 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 4px;
+    background: var(--second-color);
+    color: var(--bg-color);
+}
+
+.login:hover{
+    background: hsl(199, 98%, 56%);
+    transition: .5s;
+}
+
+
+
+.home-text{
+    color: var(--bg-color);
+    text-align: center;
+}
+
+.home-title{
+    font-size: 3.5rem;
+}
+
+.home-subtitle{
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.about{
+    position: relative;
+    width: 100%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.about .contentBx{
+    max-width: 50%;
+    width: 50%;
+    text-align: left;
+    padding-right: 40px;
+}
+
+.titleText{
+    font-weight: 600;
+    color: #111;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.title-text{
+    color: #111;
+    font-size: 1em;
+}
+
+.about .imgBx{
+    position: relative;
+    min-width: 50%;
+    width: 50%;
+    min-height: 500px;
+}
+
+.btn2{
+    position: relative;
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 30px;
+    background: #fff;
+    border: .8px solid #111;
+    color: #333;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.btn2:hover{
+    background-color: var(--second-color);
+    border: none;
+    color: #fff;
+}
+
+.post-filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1.5rem;
+    margin-top: 2rem !important;
+}
+
+.filter-item{
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.active-filter{
+    background: var(--second-color);
+    color: var(--bg-color);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.post{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, auto));
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.post-box{
+    background: var(--bg-color);
+    box-shadow: 0 4px 14px hsl(35deg 25% 15% / 10%);
+    padding: 15px;
+    border-radius: 0.5rem;
+}
+
+.post-img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0.5rem;
+}
+
+.category{
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--second-color);
+}
+
+.post-title{
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.post-date{
+    display: flex;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 400;
+}
+
+.post-description{
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    margin: 5px 0 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.profile{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid var(--second-color);
+}
+
+.profile-name{
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+footer{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 50px 100px;
+    margin-top: 3rem;
+    background: #111;
+    display: flex;
+    font-family: sans-serif;
+    justify-content: space-between;
+}
+
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.footer-container .sec{
+    margin-right: 30px;
+}
+
+.footer-container .sec.aboutus{
+    width: 40%;
+}
+
+.footer-container h2{
+    position: relative;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.footer-container h2::before{
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: rgb(77, 228, 255);
+}
+
+footer p{
+    color: #fff;
+}
+
+.sci{
+    margin: 20px;
+    display: flex;
+}
+
+.sci li{
+    list-style: none;
+}
+
+.sci li a{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: .5s;
+}
+
+.sci li a:hover{
+    background: rgb(77, 228, 255);
+}
+
+.sci i a .bx{
+    color: #fff;
+    font-size: 20px;
+}
+
+.quicklinks{
+    position: relative;
+    width: 25%;
+}
+
+.quicklinks ul li{
+    list-style: none;
+}
+
+.quicklinks ul li a{
+    color: #999;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+    transition: .3s;
+}
+
+.quicklinks ul li a:hover{
+    color: #fff;
+}
+
+.footer-container .contactBx{
+    width: calc(35% - 60px);
+    margin-right: 0 !important;
+}
+
+.contactBx .info{
+    position: relative;
+}
+
+.contactBx .info li{
+    display: flex !important;
+    margin-bottom: 16px;
+}
+
+.contactBx .info li span:nth-child(1){
+    color: #fff;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.contactBx .info li span{
+    color: #999;
+}
+
+.contactBx .info li a{
+    color: #999;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.contactBx .info li a:hover{
+    color: #fff;
+}
+
+@media (max-width: 1060px){
+    .container{
+        margin: 0 auto;
+        width: 95%;
+    }
+
+    .home-text{
+        width: 100%
+    }
+}
+
+@media (max-width: 768px){
+    .nav{
+        padding: 10px 0;
+    }
+
+    section{
+        padding: 2rem 0 !important;
+    }
+
+    .header-content{
+        margin-top: 3rem !important;
+    }
+
+    .home{
+        min-height: 380px;
+    }
+
+    .home-title{
+        font-size: 3rem;
+    }
+
+    .header-title{
+        font-size: 2rem;
+    }
+
+    .header-img{
+        height: 370px;
+    }
+
+    .about{
+        flex-direction: column;
+    }
+
+    .about .contentBx{
+        min-width: 100%;
+        width: 100%;
+        text-align: center;
+        padding-right: 0px;
+    }
+
+    .about .contentBx,
+    .about .imgBx{
+        min-width: 100%;
+        width: 100%;
+        padding-right: 0px;
+        text-align: center;
+    }
+
+    .about .imgBx{
+        min-height: 250px;
+    }
+
+    .btn2{
+        margin-bottom: 30px;
+    }
+
+    .post-header{
+        height: 435px;
+    }
+
+    .post-header{
+        margin-top: 9rem !important;
+    }
+}
+
+@media (max-width: 570px){
+    .post-header{
+        height: 390px;
+    }
+
+    .header-title{
+        width: 100%;
+    }
+
+    .header-img{
+        height: 340px;
+    }
+}
+
+@media (max-width: 396px){
+    .home-title{
+        font-size: 2rem;
+    }
+
+    .home-subtitle{
+        font-size: 0.9rem;
+    }
+
+    .home{
+        min-height: 300px;
+    }
+
+    .post-box{
+        padding: 10px;
+    }
+
+    .header-title{
+        font-size: 1.4rem;
+    }
+
+    .header-img{
+        height: 240px;
+    }
+
+    .post-header{
+        height: 335px;
+    }
+
+    .header-img{
+        height: 340px;
+    }
+}
+
+/* Footer Media Query */
+@media (max-width: 991px){
+    footer{
+        padding: 40px;
+        font-size: 20px;
+    }
+
+    footer .footer-container{
+        flex-direction: column;
+    }
+
+    footer .footer-container .sec{
+        margin-right: 0;
+        margin-bottom: 40px;
+    }
+
+    footer .footer-container .sec.aboutus{
+        width: 100% !important;
+    }
+
+    footer .footer-container .quicklinks{
+        width: 100%;
+    }
+
+    footer .footer-container .contactBx{
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column; /* Change to column layout for smaller screens */
+        text-align: center; /* Center-align text */
+        padding: 10px 0; /* Adjust padding for smaller screens */
+    }
+
+    .nav a {
+        margin-bottom: 10px; /* Add margin between navigation links */
+    }
+}
+ @media screen and (max-width: 768px) {
+
+            .navbar-brand {
+                font-size: 30px;
+            }
+
+            .navbar-collapse {
+                background-color: rgba(255, 220, 65, 0.411);
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                top: 56px; /* Adjust as needed */
+                left: -100%;
+                transition: left 0.3s ease;
+            }
+
+            .navbar-nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .navbar-toggler {
+                display: block;
+            }
+
+            .navbar-toggler-icon {
+                display: block;
+            }
+
+            .nav-item {
+                margin-right: 0 !important;
+                margin-bottom: 5px;
+            }
+
+            .nav-link {
+                padding: 8px;
+            }
+
+            .navbar-collapse.show {
+                left: 0;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .h1 {
+                font-size: 30px;
+            }
+
+            #about {
+                margin-top: 20px;
+            }
+
+            .container-xxl {
+                padding: 0 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav container">
+            
+            <a href="index.html">HOME</a>
+            <a href="ourfacility.html"> OUR FACILITIES </a>
+            <a href="About.html">ABOUT</a>
+            <a href="testcontact.html">CONTACT</a>
+            <a href="testbook.html">BOOK NOW</a>
+            <a href="login.html">LOGIN</a>
+            <a href="login.html" class="login">Sign Up</a>
+        </div>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-text container">
+            <h2 class="home-title">VL-RESORT</h2>
+            
+        </div>
+    </section>
+
+    <section class="about container" id="about">
+        <div class="contentBx">
+            <h2 class="titleText">VL-RESORT</h2>
+            <p class="title-text">
+                our luxury resort stands as a beacon of opulence and tranquility. Every element of this exquisite retreat has been meticulously designed to offer an unparalleled experience of indulgence and relaxation. From the moment you step foot onto our lush, meticulously manicured grounds, you are enveloped in an atmosphere of serenity and sophistication. Our lavish accommodations, ranging from well-appointed suites to private villas, are a testament to the art of comfort and refinement. Guests are invited to savor world-class cuisine at our gourmet restaurants, unwind in our rejuvenating spa, and take in breathtaking views of the surrounding landscape. Here, time stands still, and the worries of the world melt away, making our luxury resort the ultimate destination for those seeking an unforgettable escape from the ordinary.
+            </p>
+            <a href="#" class="btn2">Read more</a>
+        </div>
+        <div class="imgBx">
+            <img src="https://images.pexels.com/photos/274249/pexels-photo-274249.jpeg?auto=compress&cs=tinysrgb&w=600" width="500" height="500">
+        </div>
+    </section>
+
+    <div class="post-filter container">
+        <span class="filter-item active-filter" data-filter="all">All</span>
+        <span class="filter-item" data-filter="tech">Rooms</span>
+        <span class="filter-item" data-filter="food">Activity</span>
+        <span class="filter-item" data-filter="news">Adventure</span>
+    </div>
+    
+    <div class="post container">
+        <!-- Post 1 -->
+        <div class="post-box food">
+            <img src="https://images.pexels.com/photos/9005505/pexels-photo-9005505.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" class="post-img">
+            <a href="#" class="post-title">DJ Night</a>
+            <p class="post-description">As a Luxury Resort DJ, you play a pivotal role in creating an unforgettable and immersive experience for resort guests. Your job goes beyond just spinning tracks; you're responsible for setting the mood, enhancing the ambiance, and ensuring that guests have an extraordinary time during their stay. You are the musical curator, the entertainment expert, and the pulse of the resort's nightlife.</p>
+            <div class="profile">
+
+            </div>
+        </div>
+        <!-- Post 2 -->
+        <div class="post-box food">
+            <img src="https://images.pexels.com/photos/1320761/pexels-photo-1320761.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="post-img">
+          
+            <a href="#" class="post-title">Games</a>
+             <p class="post-description">A luxury resort often offers a range of recreational activities to enhance the guest experience, and beach volleyball is a popular option for those looking for a fun and active way to enjoy their vacation. Here's how you might find luxury resort volleyball to be arranged</p>
+            <div class="profile">
+              
+            </div>
+        </div>
+        <!-- Post 3 -->
+        <div class="post-box tech">
+            <img src="https://images.pexels.com/photos/260553/pexels-photo-260553.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="post-img">
+          
+            <a href="#" class="post-title">Deluxe Room 1999/-</a>
+           
+            <p class="post-description">A 2-bedroom luxury resort typically offers spacious and well-appointed accommodations for travelers seeking a more upscale and comfortable experience. These resorts often include a range of amenities and services to enhance your stay. Here are some common features you might expect to find in a luxury 2-bedroom resort</p>
+            <div class="profile">
+                
+
+            </div>
+        </div>
+        <!-- Post 4 -->
+        <div class="post-box food">
+            <img src="https://images.pexels.com/photos/261101/pexels-photo-261101.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" class="post-img">
+            
+            <a href="#" class="post-title">Swimming pool</a>
+            
+            <p class="post-description">A luxury resort swimming pool is a high-end and well-designed pool found in upscale resorts and hotels, typically catering to the needs and desires of discerning travelers. These pools often feature various amenities and elements that make them stand out from ordinary pools. Here are some common characteristics of luxury resort swimming pools</p>
+            <div class="profile">
+                
+            </div>
+        </div>
+        <!-- Post 5 -->
+        <div class="post-box tech">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-rkRDy_FMEVJbTXCTYehjd0WOHxpFt14z7A&usqp=CAU" alt="" class="post-img">
+          
+            <a href="#" class="post-title">Suite 2599/-</a>
+            
+            <p class="post-description">A luxury resort typically offers a high-end and premium experience to its guests, often characterized by lavish amenities, exquisite accommodations, and exceptional services. A luxury suite, on the other hand, is a specific type of accommodation within a luxury resort or hotel that provides the utmost in comfort and opulence. Here are some features commonly associated with luxury resorts and luxury suites</p>
+            <div class="profile">
+               
+            </div>
+        </div>
+        <!-- Post 6 -->
+        <div class="post-box food">
+            <img src="https://images.pexels.com/photos/6127330/pexels-photo-6127330.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" class="post-img">
+           
+            <a href="#" class="post-title">Dining</a>
+           
+            <p class="post-description">Dining at a luxury resort is often a memorable and indulgent experience. These high-end resorts typically offer a range of dining options to cater to various tastes and preferences. Here are some key aspects of dining at a luxury resort</p>
+            <div class="profile">
+                
+            </div>
+        </div>
+        <!-- Post 7 -->
+        <div class="post-box tech">
+            <img src="https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg" alt="" class="post-img">
+            <a href="#" class="post-title">Standard Room 1599/-</a>
+            <p class="post-description">A luxury resort single room typically refers to a high-end and well-appointed guest room at a luxury resort. These rooms are designed to provide a comfortable and luxurious experience for guests. While the specific amenities and features can vary from one resort to another, here are some common characteristics you might find in a luxury resort single room</p>
+            <div class="profile">
+               
+                
+            </div>
+        </div>
+        <!-- Post 1 -->
+        <div class="post-box food">
+            <img src="https://images.pexels.com/photos/9400988/pexels-photo-9400988.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" class="post-img">
+            <h2> Villa with private pool  3299/-</h2>
+            
+            <p class="post-description">A luxury resort beachfront villa is a high-end accommodation option located in a beachfront resort or hotel. These villas are known for their premium amenities, stunning ocean views, and direct access to the beach. Here are some common features and characteristics of a luxury resort beachfront villa</p>
+            <div class="profile">
+               </div>
+        </div>
+        <!-- Post 9 -->
+        <div class="post-box news">
+            <img src="https://images.pexels.com/photos/18724059/pexels-photo-18724059/free-photo-of-people-hiking-towards-rock-formation-in-aguas-claras.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" class="post-img">
+            <h2>Hiking Adventures</h2>
+            <p class="post-description">A luxury resort that offers hiking adventures provides a unique and appealing combination of relaxation and outdoor exploration. Here are some key features and experiences you might expect from such a resort</p>
+            <div class="profile">
+                
+              
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="sec aboutus">
+                <h2>About Us</h2>
+                <p>We strive to provide an exceptional experience for our guests, combining luxury, comfort, and natural beauty. Explore the wonders of our resorts and plan your dream vacation with us.</p>
+                <ul class="sci">
+                    <li><a href="#"><i class="bx bxl-facebook"></i></a></li>
+                    <li><a href="#"><i class="bx bxl-instagram"></i></a></li>
+                    <li><a href="#"><i class="bx bxl-twitter"></i></a></li>
+                    <li><a href="#"><i class="bx bxl-linkedin"></i></a></li>
+                </ul>
+            </div>
+            <div class="sec quicklinks">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+            <div class="sec contactBx">
+                <h2>Contact Info</h2>
+                <ul class="info">
+                    <li>
+                        <span><i class='bx bxs-map'></i></span>
+                        <span> xyz street <br> xxyyzz PA 33445 <br> ECR</span>
+                    </li>
+                    <li>
+                        <span><i class='bx bx-envelope' ></i></span>
+                        <p><a href="VL-RESORT@gmail.com">VL-RESORT@gmail.com</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="main.js"></script>
+    <script>
+        let header = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+    header.classList.toggle("shadow", window.scrollY > 0)
+})
+
+//Filter
+$(document).ready(function () {
+    $(".filter-item").click(function () {
+        const value = $(this).attr("data-filter");
+        if (value == "all"){
+            $(".post-box").show("1000")
+        } else{
+            $(".post-box")
+                .not("." + value)
+                .hide(1000);
+            $(".post-box")
+            .filter("." + value)
+            .show("1000")
+        }
+    });
+    $(".filter-item").click(function () {
+        $(this).addClass("active-filter").siblings().removeClass("active-filter")
+    });
+});
+    </script>
+</body>
+</html
